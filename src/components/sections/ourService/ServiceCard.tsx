@@ -5,7 +5,7 @@ import {
   SoftwareIcon,
   AnalyticsIcon,
   ManagedIcon,
-} from "./icons";
+} from "./Icons";
 
 interface ServiceCardProps {
   service: ServiceItem;

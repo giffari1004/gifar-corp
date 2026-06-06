@@ -1,6 +1,6 @@
 import React from "react";
 import type { TestimonialItem } from "../../../types/service";
-import { StarIcon } from "./icons";
+import { StarIcon } from "./Icons";
 
 interface TestimonialCardProps {
   testimonial: TestimonialItem;
