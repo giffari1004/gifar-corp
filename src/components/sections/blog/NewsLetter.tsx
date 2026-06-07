@@ -10,7 +10,7 @@ export const Newsletter: React.FC = () => {
           </h2>
           <p className="text-gray-400 text-sm md:text-base leading-relaxed">
             Subscribe to our monthly newsletter for curated industry insights,
-            exclusive reports, and the latest NexusCorp updates.
+            exclusive reports, and the latest GifarCorp updates.
           </p>
         </div>
         <div className="w-full lg:max-w-md">

@@ -1,33 +1,21 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import { BlogCard } from "../components/sections/blog/BlogCard";
 import { Newsletter } from "../components/sections/blog/NewsLetter";
-import { MOCK_POSTS } from "../constant/blogData";
-
-// Mock Data Berdasarkan Gambar yang Diberikan
-
+import { useBlogFilter, CATEGORIES } from "../hooks/useBlogFilter";
 
 export const BlogPage: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All Posts");
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  const categories = ["All Posts", "Technology", "Culture", "Services"];
-
-  // Logika Filter dan Search Konten
-  const filteredPosts = useMemo(() => {
-    return MOCK_POSTS.filter((post) => {
-      const matchesCategory =
-        selectedCategory === "All Posts" || post.category === selectedCategory;
-      const matchesSearch =
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }, [selectedCategory, searchQuery]);
+  const {
+    selectedCategory,
+    searchQuery,
+    setSearchQuery,
+    currentPage,
+    setCurrentPage,
+    filteredPosts,
+    handleSelectCategory,
+  } = useBlogFilter();
 
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col font-sans">
-
       {/* BLOG CONTENT CONTAINER */}
       <main className="max-w-7xl w-full mx-auto px-6 py-12 grow">
         {/* Page Title Header */}
@@ -45,13 +33,10 @@ export const BlogPage: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-4 mb-8">
           {/* Tabs Filter */}
           <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
+            {CATEGORIES.map((cat) => (
               <button
                 key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setCurrentPage(1);
-                }}
+                onClick={() => handleSelectCategory(cat)}
                 className={`px-4 py-2 text-xs font-semibold tracking-wide transition-colors ${
                   selectedCategory === cat
                     ? "bg-black text-white"
@@ -63,7 +48,7 @@ export const BlogPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Search Input Custom Style matched with image */}
+          {/* Search Input */}
           <div className="relative w-full md:w-72">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
               <svg
@@ -138,7 +123,6 @@ export const BlogPage: React.FC = () => {
 
       {/* NEWSLETTER BANNER */}
       <Newsletter />
-      
     </div>
   );
 };

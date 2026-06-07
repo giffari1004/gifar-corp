@@ -1,43 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { testimonialsData } from "../../../constant/testimonialsData";
+import { useTestimonial } from "../../../hooks/useTestimonial";
 
 export const TestimonialSection: React.FC = () => {
-  // State untuk melacak indeks card pertama yang ditampilkan
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Fungsi navigasi ke testimonial sebelumnya
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => {
-      // Jika sudah di paling awal, putar ke halaman akhir yang memuat 2 card terakhir
-      if (prevIndex === 0) {
-        return testimonialsData.length - 2;
-      }
-      return prevIndex - 1;
-    });
-  };
-
-  // Fungsi navigasi ke testimonial berikutnya
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => {
-      // Jika mencapai batas di mana tidak ada lagi 2 card penuh ke depan, kembali ke 0
-      if (prevIndex >= testimonialsData.length - 2) {
-        return 0;
-      }
-      return prevIndex + 1;
-    });
-  };
-
-  // Mengambil tepat 2 card berdasarkan nilai currentIndex saat ini
-  const visibleTestimonials = testimonialsData.slice(
-    currentIndex,
-    currentIndex + 2,
-  );
+  const { visibleTestimonials, handlePrev, handleNext } = useTestimonial();
 
   return (
     <section className="bg-[#0f172a] text-white py-24 px-6 md:px-12 lg:px-24 font-sans overflow-hidden">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
-        {/* Title sesuai file image_b804e5.png */}
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16 text-slate-100">
           Trusted by Industry Leaders
         </h2>

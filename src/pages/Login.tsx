@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import { useLoginForm } from "../hooks/useLoginForm";
 import { InputField } from "../components/sections/login/InputField";
 
-
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Jalankan logika integrasi API login di sini nanti
-    console.log({ email, password });
-  };
+  const { register, handleSubmit, onSubmit, errors, isSubmitting } =
+    useLoginForm();
 
   return (
     <div className="relative min-h-screen flex flex-col justify-between bg-gray-100 font-sans overflow-hidden">
-      {/* Background Decorative Blur Elements (Sesuai siluet di belakang card gambar) */}
+      {/* Background Decorative Blur Elements */}
       <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none select-none opacity-20 scale-110">
         <div className="w-100 h-20 bg-white rounded-lg shadow-md mb-4 border border-gray-200"></div>
         <div className="w-100 h-20 bg-white rounded-lg shadow-md mb-4 border border-gray-200"></div>
@@ -35,15 +29,14 @@ export const Login: React.FC = () => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <InputField
               id="email"
               label="Email"
               type="email"
-              placeholder="name@nexuscorp.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              placeholder="name@gifarcorp.com"
+              error={errors.email?.message}
+              {...register("email")}
             />
 
             <InputField
@@ -51,9 +44,7 @@ export const Login: React.FC = () => {
               label="Password"
               type="password"
               placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              error={errors.password?.message}
               rightElement={
                 <a
                   href="#forgot"
@@ -62,15 +53,26 @@ export const Login: React.FC = () => {
                   Forgot Password?
                 </a>
               }
+              {...register("password")}
             />
+
+            {/* Root / API Error */}
+            {errors.root && (
+              <div className="mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-xs text-red-600 font-medium">
+                  {errors.root.message}
+                </p>
+              </div>
+            )}
 
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full mt-4 bg-black text-white py-3 rounded-md font-medium text-sm flex items-center justify-center gap-2 hover:bg-gray-900 active:scale-[0.99] transition-all duration-150"
+              disabled={isSubmitting}
+              className="w-full mt-4 bg-black text-white py-3 rounded-md font-medium text-sm flex items-center justify-center gap-2 hover:bg-gray-900 active:scale-[0.99] transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Login
-              <span className="text-base">→</span>
+              {isSubmitting ? "Logging in..." : "Login"}
+              {!isSubmitting && <span className="text-base">→</span>}
             </button>
           </form>
 

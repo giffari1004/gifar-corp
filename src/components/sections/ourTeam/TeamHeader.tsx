@@ -13,7 +13,7 @@ export default function TeamHeader(): React.JSX.Element {
           The Architects of Innovation
         </h1>
         <p className="text-base text-gray-600 leading-relaxed">
-          NexusCorp brings together a diverse group of visionary thinkers and
+          GifarCorp brings together a diverse group of visionary thinkers and
           precise executors. Our team is dedicated to redefining the boundaries
           of corporate efficiency through technology and human-centric design.
         </p>

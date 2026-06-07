@@ -12,7 +12,7 @@ export default function TeamCTA(): React.JSX.Element {
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-8">
             Our teams are ready to scale with your project. Whether it's
-            high-level strategy or granular development, NexusCorp has the
+            high-level strategy or granular development, GifarCorp has the
             talent to deliver excellence.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -44,7 +44,7 @@ export default function TeamCTA(): React.JSX.Element {
           <div className="relative pt-[60%] w-full">
             <img
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" // Referensi gambar di image_7750aa.jpg
-              alt="NexusCorp Meeting Room"
+              alt="GifariCorp Meeting Room"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>

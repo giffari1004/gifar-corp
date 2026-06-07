@@ -33,7 +33,7 @@ export const MOCK_POSTS: BlogPost[] = [
     category: "Services",
     date: "May 08, 2024",
     description:
-      "NexusCorp specialists outline the five essential pillars of financial infrastructure for series-B startups eyeing global expansion.",
+      "GifarCorp specialists outline the five essential pillars of financial infrastructure for series-B startups eyeing global expansion.",
     author: "Marcus Webb",
     authorInitials: "MW",
     avatarBg: "bg-teal-100",
