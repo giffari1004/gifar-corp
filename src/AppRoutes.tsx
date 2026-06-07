@@ -6,6 +6,7 @@ import ServicePages from "./pages/ServicePages";
 import { Login } from "./pages/Login";
 import { CreatePost } from "./pages/CreatePost";
 import { BlogPage } from "./pages/Blog";
+import AboutPage from "./pages/About";
 
 export default function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
         <Route path="/team" element={<OurTeam />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/about" element={<AboutPage/>}/>
       </Route>
 
       {/* Halaman login dipisahkan di luar layout agar tidak menampilkan Navbar & Footer */}
